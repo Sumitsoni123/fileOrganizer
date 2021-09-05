@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require("path");
+
 function organizefn(dirPath) {
     //console.log("Organize command implemented for", dirPath);
     let destPath;

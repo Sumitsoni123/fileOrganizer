@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require("path");
+
 function treefn(dirPath) {
     // let destPath;
     if (dirPath == undefined) {
