@@ -6,12 +6,13 @@ function treefn(dirPath) {
     if (dirPath == undefined) {
         treeHelper(process.cwd(), "");
         return;
-    } else {
+    } 
+    else {
         let doesExist = fs.existsSync(dirPath);
         if (doesExist) {
             treeHelper(dirPath, "");
-        } else {
-
+        } 
+        else {
             console.log("Kindly enter the correct path");
             return;
         }
@@ -24,7 +25,8 @@ function treeHelper(dirPath, indent) {
     if (isFile == true) {
         let fileName = path.basename(dirPath);
         console.log(indent + "├──" + fileName);
-    } else {
+    } 
+    else {
         let dirName = path.basename(dirPath)
         console.log(indent + "└──" + dirName);
         let childrens = fs.readdirSync(dirPath);

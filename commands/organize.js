@@ -1,22 +1,30 @@
 const fs = require('fs');
 const path = require("path");
+const process = require('process');
+
+let types = {
+    media: ["mp4", "mkv"],
+    archives: ["zip", "7z", "rar", "tar", "gz", "ar", "iso", "xz"],
+    documents: ["json", "js", "md", "docx", "doc", "pdf", "xlsx", "xls", "odt", "ods", "odp", "odg", "odf", "txt", "ps"],
+    app: ["exe", "dmg", "pkg", "deb"]
+}
 
 function organizefn(dirPath) {
     //console.log("Organize command implemented for", dirPath);
     let destPath;
     if (dirPath == undefined) {
-        console.log("Kindly enter dir path");
+        // console.log("Kindly enter dir path");
+        dirPath = process.cwd();
+    }
+    let doesExist = fs.existsSync(dirPath);
+    if (doesExist) {
+        destPath = path.join(dirPath, "organised_file");
+        if (fs.existsSync(destPath) == false)
+            fs.mkdirSync(destPath);
+    }
+    else {
+        console.log("Kindly enter the correct dir path");
         return;
-    } else {
-        let doesExist = fs.existsSync(dirPath);
-        if (doesExist) {
-            destPath = path.join(dirPath, "organised_file");
-            if (fs.existsSync(destPath) == false)
-                fs.mkdirSync(destPath);
-        } else {
-            console.log("Kindly enter the correct dir path");
-            return;
-        }
     }
     organizeHelper(dirPath, destPath);
 }
